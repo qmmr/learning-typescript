@@ -17,7 +17,7 @@ export class Entity {
 
   @Log()
   get title(): string {
-    Entity.wait(5000)
+    Entity.wait(Math.random() * 1000)
     return this._title
   }
 
