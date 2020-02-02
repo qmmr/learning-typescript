@@ -41,7 +41,11 @@
 import { Task } from './task'
 import { Completable } from './completable'
 
-function sendCompletionEmail(completable: Completable) {
+interface sendCompletionEmailFN {
+  (completeable: Completable): void
+}
+
+const sendCompletionEmail: sendCompletionEmailFN = (completable) => {
   if (!completable.completed) {
     // ignore incompleted entities
     console.error(`Please, complete '${completable.title}' before sending email.`)
@@ -49,6 +53,18 @@ function sendCompletionEmail(completable: Completable) {
   }
   console.log(`Sending email about '${completable.title}'`)
   // ...
+}
+
+// let tasks: Array<Task> or let tasks: Task[]
+let tasks: Task[] = [
+  new Task(1, 'Buy milk'),
+  new Task(2, 'Buy cheese'),
+  new Task(3, 'Pay bills'),
+  new Task(4, 'Clean the house'),
+]
+
+for (let task of tasks) {
+  console.log(task.title)
 }
 
 let bugFix = new Task(1, 'Weirdo flying bug')
